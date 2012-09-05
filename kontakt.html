@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+<title>Happy print shop</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script  type="text/javascript" src="http://code.jquery.com/jquery-1.8.0.min.js"></script> 
+</head>
+<body>
+
+<div id="map_canvas" style="width:400px; height:340px">
+
+  <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?sensor=true">
+    </script>
+	    <script type="text/javascript">
+				  function initialize() {
+				    var latlng = new google.maps.LatLng(50.0804990, 14.41586440);
+				    var myOptions = {
+				      zoom: 15,
+				      center: latlng,
+				      mapTypeId: google.maps.MapTypeId.ROADMAP
+				    };
+				    var map = new google.maps.Map(document.getElementById("map_canvas"),
+				        myOptions);
+				
+				 var image = new google.maps.MarkerImage('images/marker.png',
+        new google.maps.Size(65, 124),
+        new google.maps.Point(0,0),
+        new google.maps.Point(56, 122)
+    );
+				    var marker = new google.maps.Marker({
+				        position: latlng, 
+				        map: map, 
+				        title:"Školka",
+				        icon:image
+				    });   
+				    
+				    
+var contentString =
+
+    '<div style="color:black">'+
+    'Ostrovní 11, 110 00 Praha 1 <br />' + 
+						'	Telefon: +420 224 930 861<br />' + 
+						'	Mobil: +420 775 338 743<br />' + 
+						'	Mail: <a href="mailto:cmsostrovni@tiscali.cz">cmsostrovni@tiscali.cz</a>' + 
+    '</div>';
+
+var infowindow = new google.maps.InfoWindow({
+    content: contentString
+});
+
+
+				    google.maps.event.addListener(marker, 'click', function() {
+  infowindow.open(map,marker);
+});
+
+				  }
+				  initialize();
+				</script>
+</body>
+</html>
